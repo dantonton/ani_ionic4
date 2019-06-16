@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+        </ion-buttons>
+    <ion-title slot="start" >Aniversariantes</ion-title>
+    <ion-buttons slot="end">
+        <ion-menu-button autoHide="false"></ion-menu-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-segment >
+  <ion-segment-button value="aniversarios" checked>
+    <ion-label>Aniversários</ion-label>
+  </ion-segment-button>
+  <ion-segment-button  value="unimed">
+    <ion-label>Unimed</ion-label>
+  </ion-segment-button>
+</ion-segment>
+<ion-content class="ion-padding">
+<ion-row>
+  
+      <h1>
+          Veja os cooperados que comemoram aniversário. Selecione uma data ou pesquise pelo nome.
+        </h1>
+  
+</ion-row>
+<section>
+    <ion-card class="seledata">
+    <ion-item lines="none">
+            
+            <ion-icon  slot="start" name="calendar"></ion-icon>
+            <!--<ion-label>OUTUBRO - 2017 </ion-label>-->
+            <ion-datetime 
+            monthNames="janeiro, fevereiro, março, abril, maio, junho, julho, agosto, setembro, outubro, novembro, dezembro"
+            [(ngModel)]="diames" (ionChange)='trocouData()' display-format="DD MMMM" picker-format="DD - MMMM" ></ion-datetime>
+            <ion-icon slot="end" name="arrow-dropright"></ion-icon>
+              </ion-item>
+      </ion-card>
+</section>
+<section>
+    <ion-input class="input-full-card" [(ngModel)]="busca" (ionChange)='trocouBusca()' placeholder="Nome do aniversariante"></ion-input>
+
+</section>
+<section>
+    <ion-card class="anidodia"  *ngFor="let dodia of aniversariantes">
+        <ion-card-header>
+          <ion-item lines="full">
+            
+            
+            <ion-label> ANIVERSARIANTES DO DIA </ion-label>
+            <div  class="data"> 
+              <h2>{{dodia.date | date: 'dd'}}</h2>
+              <h3>{{dodia.date | date: 'MMM'}}</h3>
+            </div>
+            </ion-item>
+        </ion-card-header>
+      
+        <ion-card-content>
+            <ion-list>
+
+                <ion-item  lines="none" *ngFor="let user of dodia.users">
+                  <ion-label>{{user}}</ion-label>
+                </ion-item>
+              </ion-list>
+        </ion-card-content>
+      </ion-card>
+  </section>
+</ion-content>
